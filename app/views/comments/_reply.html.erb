@@ -1,0 +1,12 @@
+<% if reply.replies.any? %>
+      <% reply.replies.each do |reply1| %> 
+      <div class="shadow p-3 mb-5 bg-body rounded">
+    <%= reply1.body %>  
+      
+
+      <%= render partial: 'comments/reply'%>
+
+      </div>
+      <% end %>
+      <div id="reply-form-<%= comment.id %>"></div>
+  <% end %>

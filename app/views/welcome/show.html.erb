@@ -1,0 +1,35 @@
+<%= render partial: "shared/navbar"%>
+<p id="notice"><%= notice %></p>
+
+<strong class="card-title"><center>Name:- <%= @user.first_name %> <%= @user.last_name %><br>
+Email:- <%= @user.email %><br>
+Date of birth:- <%= @user.date_of_birth %><br>
+Gender:- <%= @user.gender %><br>
+</center></strong>
+    
+
+<% @post.each do |post| %>
+<div class="card">
+    <div class="card-body">    
+        <% if @user.avatar.representable? %>
+      <%= image_tag @user.avatar, :size=> '50x40'%>
+       <% end %>
+    <strong class="card-title"><%= @user.first_name %>&nbsp;<%= @user.last_name %></strong>&nbsp;&nbsp;
+      (<%= post.created_at %>) <br>  
+      <p class="card-text"><%= truncate(post.body, length: 60) %><br>
+      <% if post.avatar.representable? %>
+      <%= image_tag post.avatar, :size=> '200x190'%><br>    
+    <% end %>
+    <%# pre_like = post.likes.find { |like| like.user_id == Current.user.id} %>
+<%# if pre_like %>
+  <%#= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
+<%# else %>
+ <%#= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %>
+ <%# end %>
+    <p><%#= post.likes.count %> <%#= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    <%= link_to 'Edit Post', edit_post_path(post.id), class: 'card-link' %>
+    <%= button_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-primary' %>
+     </div>
+  </div>
+  <% end %>
+

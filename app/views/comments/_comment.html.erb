@@ -1,0 +1,32 @@
+    <%# if @user.find_by(first_name: comment.first_name).avatar.representable? %>
+    <%#= image_tag @user.find_by(first_name: comment.first_name).avatar, :size=> '50x40'%>
+    <%# end %>
+    <strong><%#= comment.first_name %>&nbsp;<%#= comment.last_name %></strong>
+    <%#= comment.body %>
+
+    <%#= link_to 'reply', new_post_comment_path(post_id: comment.post_id, parent_id: comment.id), remote: true, class: 'd-block' %> 
+   
+
+   <% post.comments.each do |comment| %>
+              
+              <% if @user.find(comment.user_id).avatar.representable? %>
+              <%= image_tag @user.find(comment.user_id).avatar, :size=> '50x40'%>
+              <% end %> 
+              <strong><%= @user.find(comment.user_id).first_name %>&nbsp;<%= @user.find(comment.user_id).last_name %></strong><br>                             
+              <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.body %>
+
+              <%= link_to 'Reply', new_comment_reply_path(comment_id: comment.id), remote: true, class: 'd-block' %></p>
+
+              <%= render "comments/comment", post: comment %>
+                <% end %>
+      
+      
+
+
+
+
+
+
+
+
+  

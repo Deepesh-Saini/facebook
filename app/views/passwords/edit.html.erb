@@ -1,0 +1,17 @@
+<%= render partial: "shared/navbar"%>
+<center><br><br><br>
+<h2>Edit Password</h2><br>
+  <%= form_with model: Current.user, url: password_path do |f| %>
+    
+    <%= f.label 'New password:'%><br>
+    <%= f.password_field :password %><br><br><br>
+
+    
+    <%= f.label 'Re-enter new password:'%><br>
+    <%= f.password_field :password_confirmation %><br><br><br>
+    
+    
+    <%= f.submit 'Update' %>
+    
+  <% end %>
+</center>
