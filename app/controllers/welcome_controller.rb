@@ -11,8 +11,8 @@ class WelcomeController < ApplicationController
   end
 
   def show
-    @user = User.find(Current.user.id)
-    @post = Post.where(user_id: Current.user.id)
+    @user = User.find(@current_user.id)
+    @post = Post.where(user_id: @current_user.id)
   end
 
 end

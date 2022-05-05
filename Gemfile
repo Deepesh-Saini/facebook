@@ -48,6 +48,8 @@ gem 'bootstrap', '~> 5.1.3'
 
 gem 'active_storage_validations'
 
+gem 'scrollbar-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

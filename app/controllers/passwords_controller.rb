@@ -7,7 +7,7 @@ class PasswordsController < ApplicationController
     
     def update
       # update user password
-      if Current.user.update(password_params)
+      if @current_user.update(password_params)
         redirect_to new_session_path, notice: 'Password Updated'
       else
         render :edit

@@ -1,4 +1,4 @@
-<% if Current.user %>
+<% if @current_user %>
 <%= render partial: "shared/navbar"%>
 <p id="notice"><%= notice %></p>
 
@@ -19,7 +19,7 @@
   <%= image_tag post.avatar, :size=> '200x190'%><br>
   <% end %>
 
-  <% pre_like = post.likes.find_by(user_id: Current.user.id) %>
+  <% pre_like = post.likes.find_by(user_id: @current_user.id) %>
   <% if pre_like %>
   <%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
   <% else %>
@@ -30,7 +30,7 @@
   <%= form_with model: @comment, url: post_comments_path(post.id) do |f| %>
   <div class="form-group">  
     <%= f.text_area :body, class: 'form-control', placeholder: "Write a Comment" %>
-    <%= f.hidden_field :user_id , value: Current.user.id %>
+    <%= f.hidden_field :user_id , value: @current_user.id %>
   </div>
     <%= f.submit 'Submit', class: 'btn btn-primary' %>
   <% end %><br>

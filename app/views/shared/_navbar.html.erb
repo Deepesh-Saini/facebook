@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <div class="container-fluid">
-    <a class="navbar-brand"><h3 style="display: flex;justify-content: center;align-items: center;"><%= Current.user.first_name %>&nbsp;&nbsp;<span><% if Current.user.avatar.representable? %><%= image_tag Current.user.avatar, :size=> '50x40'%><% end %></span></h3></a>    
+    <a class="navbar-brand"><h3 style="display: flex;justify-content: center;align-items: center;"><%= @current_user.first_name %>&nbsp;&nbsp;<span><% if @current_user.avatar.representable? %><%= image_tag @current_user.avatar, :size=> '50x40'%><% end %></span></h3></a>    
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <form action= <%= welcome_index_path %> class="d-flex">
@@ -9,9 +9,9 @@
         </form>
         <strong style="margin: 0 30px;"><%= link_to 'Home', root_path %>
           <%= link_to 'Create a Post', new_post_path %>
-          <%= link_to 'Profile', welcome_path(Current.user.id) %>
-          <%= link_to 'Change Password', edit_password_path(Current.user) %></strong>
-          <%= button_to 'Logout', session_path(Current.user), method: :delete, class: 'btn btn-primary' %>
+          <%= link_to 'Profile', welcome_path(@current_user.id) %>
+          <%= link_to 'Change Password', edit_password_path(@current_user) %></strong>
+          <%= button_to 'Logout', session_path(@current_user), method: :delete, class: 'btn btn-primary' %>
       </ul>
     </div>
   </div>

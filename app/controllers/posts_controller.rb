@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@user = User.find(Current.user.id)
+		@user = User.find(@current_user.id)
 		@post = @user.posts.create(body: params[:post][:body] , avatar: params[:post][:avatar], status: params[:post][:status])
       # deliver_now is provided by ActiveJob.
       redirect_to root_path, notice: 'Successfully Upload'
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.all.find(params[:id])
-		Like.create(user_id: Current.user.id, post_id: @post.id)
+		Like.create(user_id: @current_user.id, post_id: @post.id)
 		redirect_to post_path(@post)
 	end
 
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		@user = User.find(Current.user.id)
+		@user = User.find(@current_user.id)
 		@post = @user.posts.create(body: params[:post][:body] , avatar: params[:post][:avatar], status: params[:post][:status])
       # deliver_now is provided by ActiveJob.
       redirect_to root_path, notice: 'Successfully Updated!!'
