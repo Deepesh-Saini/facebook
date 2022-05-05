@@ -3,23 +3,24 @@ class LikesController < ApplicationController
 	before_action :find_post
   before_action :find_like, only: [:destroy]
   before_action :require_user_logged_in!
-  
+
   def create
     if already_liked?
-    flash[:notice] = "You can't like more than once"
-  else
-    @post.likes.create(user_id: Current.user.id)
-    redirect_to root_path
-  end
-end
+      flash[:notice] = "You can't like more than once"
+    else
+      @post.likes.create(user_id: Current.user.id)
+      redirect_to root_path
+      end
+    end
 
+  
   def destroy
-  if !(already_liked?)
-    flash[:notice] = "Cannot unlike"
-  else
-    @like.destroy
-  end
-  redirect_to root_path
+    if !(already_liked?)
+      flash[:notice] = "Cannot unlike"
+    else
+      @like.destroy
+    end
+    redirect_to root_path
   end
   
 

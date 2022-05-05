@@ -1,18 +1,17 @@
 <center><h1>Create an account</h1><br>
-<%= form_with model: @user, url: registrations_path do |f|%>
-<%= f.text_field :first_name, placeholder: "First Name" %><br>
- <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
- <%= f.text_field :email, placeholder: "Email" %><br><br>
- <%= f.password_field :password, placeholder: "Password" %><br>
- <%= f.password_field :password_confirmation, placeholder: "Re-enter Password" %><br><br>
-Birthday:<br>
-<%= f.date_field :date_of_birth %><br><br>
-Gender<br>
-    <%= f.radio_button :gender, 'Male' %> Male &nbsp&nbsp&nbsp&nbsp
-    <%= f.radio_button :gender, 'Female' %> Female<br><br>
-<%= f.label "Profile Photo:"%>
-<%= f.file_field :avatar, accept: 'avatar/png, avatar/gif, avatar/jpg, avatar/jpeg' %><br><br>
-<%= f.submit 'Create Account' %>
-
-<% end %>
+  <%= form_with model: @user, url: registrations_path do |f|%>
+  <%= f.text_field :first_name, placeholder: "First Name" %><br>
+  <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
+  <%= f.text_field :email, placeholder: "Email" %><br><br>
+  <%= f.password_field :password, placeholder: "Password" %><br>
+  <%= f.password_field :password_confirmation, placeholder: "Re-enter Password" %><br><br>
+  Birthday:<br>
+  <%= f.date_field :date_of_birth %><br><br>
+  Gender<br>
+  <%= f.radio_button :gender, 'Male' %> Male &nbsp&nbsp&nbsp&nbsp
+  <%= f.radio_button :gender, 'Female' %> Female<br><br>
+  <%= f.label "Profile Photo:"%>
+  <%= f.file_field :avatar, accept: 'avatar/png, avatar/gif, avatar/jpg, avatar/jpeg' %><br><br>
+  <%= f.submit 'Create Account' %>
+  <% end %>
 </center>

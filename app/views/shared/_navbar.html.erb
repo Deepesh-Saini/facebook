@@ -2,15 +2,15 @@
   <div class="container-fluid">
     <a class="navbar-brand"><h3 style="display: flex;justify-content: center;align-items: center;"><%= Current.user.first_name %>&nbsp;&nbsp;<span><% if Current.user.avatar.representable? %><%= image_tag Current.user.avatar, :size=> '50x40'%><% end %></span></h3></a>    
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">        
+      <ul class="navbar-nav">
         <form action= <%= welcome_index_path %> class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_key">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-          <strong style="margin: 0 30px;"><%= link_to 'Home', root_path %>
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_key">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <strong style="margin: 0 30px;"><%= link_to 'Home', root_path %>
           <%= link_to 'Create a Post', new_post_path %>
           <%= link_to 'Profile', welcome_path(Current.user.id) %>
-          <%= link_to 'Edit Profile', edit_password_path(Current.user) %></strong>
+          <%= link_to 'Change Password', edit_password_path(Current.user) %></strong>
           <%= button_to 'Logout', session_path(Current.user), method: :delete, class: 'btn btn-primary' %>
       </ul>
     </div>

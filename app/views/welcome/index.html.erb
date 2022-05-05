@@ -1,58 +1,54 @@
 <% if Current.user %>
 <%= render partial: "shared/navbar"%>
 <p id="notice"><%= notice %></p>
+
 <% @post.each do |post| %>
-<% unless post.Private? %>
+<% unless post.private? %>
+
 <div class="shadow-lg p-3 mb-5 bg-body rounded">
+  
+  <% if @user.find(post.user_id).avatar.representable? %>
+  <%= image_tag @user.find(post.user_id).avatar, :size=> '50x40'%>
+  <% end %>
+  
+  <strong><%= @user.find(post.user_id).first_name %>&nbsp;<%= @user.find(post.user_id).last_name %></strong>&nbsp;&nbsp;<br>
+  
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(post.body, length: 60) %></p>
+  
+  <% if post.avatar.representable? %>
+  <%= image_tag post.avatar, :size=> '200x190'%><br>
+  <% end %>
 
-    <% if @user.find(post.user_id).avatar.representable? %>
-    <%= image_tag @user.find(post.user_id).avatar, :size=> '50x40'%>
-    <% end %>
-    <strong><%= @user.find(post.user_id).first_name %>&nbsp;<%= @user.find(post.user_id).last_name %></strong>&nbsp;&nbsp;<br>  
-    <p><%= truncate(post.body, length: 60) %><br>
-      <% if post.avatar.representable? %>
-      <%= image_tag post.avatar, :size=> '200x190'%><br>
-      <% end %>
-      <% pre_like = post.likes.find { |like| like.user_id == Current.user.id} %>
-      <% if pre_like %>
-      <%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
-      <% else %>
-      <%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %>
-      <% end %>
-      <%#= button_to 'Comment', post_comment_path(post.id), method: :get, class: 'btn btn-primary' %>
-      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-      
+  <% pre_like = post.likes.find_by(user_id: Current.user.id) %>
+  <% if pre_like %>
+  <%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
+  <% else %>
+  <%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+  <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
 
-      
-          
-          <%#= form_with(model: [post, post.comments.build]) do |f| %>
-          
-          <%= form_with model: @comment, url: post_comments_path(post.id) do |f| %>
-          <div class="form-group">
-            <%= f.text_area :body, class: 'form-control', placeholder: "Write a Comment" %>
-            <%= f.hidden_field :user_id , value: Current.user.id %>
-            </div>
-            <%= f.submit 'Submit', class: 'btn btn-primary' %>
-           
-            <% end %><br>
+  <%= form_with model: @comment, url: post_comments_path(post.id) do |f| %>
+  <div class="form-group">  
+    <%= f.text_area :body, class: 'form-control', placeholder: "Write a Comment" %>
+    <%= f.hidden_field :user_id , value: Current.user.id %>
+  </div>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %><br>
 
-             <div class="ScrollStyle">
-             <%= render "comments/comment", post: post %>
-            </div>
-              
-
-          
-    </div>
-    <% end %> 
-    <% end %>       
+  <div class="ScrollStyle">
+    <%= render "comments/comment", post: post %>
+  </div>
+  
+</div>
+<% end %> 
+<% end %>
 
 
-    <% else %><br><br><br><br>
-    
-      <div class="shadow-lg p-3 mb-5 bg-body rounded">
-        <div class="position-relative m-4">
-      <h1><strong>Facebook</strong></h1>
-      <center>
+<% else %><br><br><br><br>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="position-relative m-4">
+    <h1><strong>Facebook</strong></h1>
+    <center>
       <%= form_with url: sessions_path do |f| %>
       <%= f.text_field :email, id: 'email', placeholder: "Enter your e-mail" %><br><br>
       <%= f.password_field :password, id: 'password', placeholder: "Enter your password" %><br><br>
@@ -61,9 +57,8 @@
       <%= button_to 'Create New Account?', new_registration_path, method: :get, class: 'btn btn-secondary' %>
       <br>
     </center>
-     </div>
-     </div>
-     <% end %>
-        
+  </div>
+</div>
+<% end %>      
 
 

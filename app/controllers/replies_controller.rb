@@ -1,14 +1,12 @@
 class RepliesController < ApplicationController
-
-	def new
+  
+  def new
     @comments = Comment.find(params[:comment_id])
-
     @comment = @comments.comments.new
-
   end
 
+
   def create
-   
     @comments = Comment.find(params[:comment_id])
     @comment = @comments.comments.new(comment_params)
 
@@ -21,13 +19,12 @@ class RepliesController < ApplicationController
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
-end
-
-
-    private
-    def comment_params
-      params.require(:comment).permit(:body, :user_id)
-    end
-
-
   end
+
+
+  private
+  def comment_params
+    params.require(:comment).permit(:body, :user_id)
+  end
+
+end

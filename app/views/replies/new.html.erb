@@ -1,19 +1,10 @@
 <br>
 <div class="shadow p-3 mb-5 bg-body rounded">
-          <%#= form_with(model: [post, post.comments.build]) do |f| %>
-          
-          <%= form_with model: @comment, url: comment_replies_path(@comments) do |f| %>
-          <div class="form-group">
-            <%= f.text_area :body, class: 'form-control', placeholder: "Write a Reply" %>
-            <%= f.hidden_field :user_id , value: Current.user.id %>
-            </div>
-            <%= f.submit 'Submit', class: 'btn btn-primary' %>
-           
-            <% end %><br>
-        
-          </div>
-
-
-
-
-          
+  <%= form_with model: @comment, url: comment_replies_path(@comments) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, class: 'form-control', placeholder: "Write a Reply" %>
+    <%= f.hidden_field :user_id , value: Current.user.id %>
+  </div>
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %><br>
+</div>         
