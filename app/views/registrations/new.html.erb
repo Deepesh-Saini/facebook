@@ -1,50 +1,5 @@
-<center>
-  <div class="wrapper">
-    <div class="title">
-      Create an account
-      <p>It's free and easy</p>
-    </div>
+<%= render "remote_modal", title: "Create an account" do %>
 
-    <%= form_with model: @user, url: registrations_path do |f|%>
-    <div class="field">
-      <%= f.text_field :first_name, placeholder: "First Name" %>
-    </div>
+  <%= render "form", user: @user %>
 
-    <div class="field">
-      <%= f.text_field :last_name, placeholder: "Last Name" %>
-    </div>
-  
-    <div class="field">
-      <%= f.text_field :email, placeholder: "Email" %><br><br>
-    </div>
-  
-    <div class="field">
-      <%= f.password_field :password, placeholder: "Password" %><br>
-    </div>
-  
-    <div class="field">
-      <%= f.password_field :password_confirmation, placeholder: "Re-enter Password" %><br><br>
-    </div>
-  
-    <div class="field">
-      Birthday:
-      <%= f.date_field :date_of_birth %>
-    </div><br><br>
- 
-    <div class="checkbox">
-      <%= f.radio_button :gender, 'Male' %> Male &nbsp&nbsp&nbsp&nbsp
-      <%= f.radio_button :gender, 'Female' %> Female<br><br>
-    </div>
-  
-      <%= f.label "Profile Photo:"%>
-      <%= f.file_field :avatar, accept: 'avatar/png, avatar/gif, avatar/jpg, avatar/jpeg' %><br><br>
-  
-    <div class="field">
-      <%= f.submit 'Create Account' %>
-    </div>
-  
-    <div class="signup-link">
-      Already have a account?<br><%= link_to 'LogIn', root_path , method: :delete %>
-    </div>
-    <% end %>
-</center>
+<% end %>

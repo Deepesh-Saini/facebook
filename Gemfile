@@ -50,6 +50,8 @@ gem 'active_storage_validations'
 
 gem 'scrollbar-rails'
 
+gem 'popper_js'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

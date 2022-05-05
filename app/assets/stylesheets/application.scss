@@ -14,7 +14,7 @@
  *= require_self
  */
 
-
+@import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 *{
@@ -135,10 +135,10 @@
 
 
 .wrapper{
-    width: 500px;
+    width: 480px;
     background: #fff;
-    border-radius: 15px;
-    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.0);
 }
 
 .wrapper .title{
