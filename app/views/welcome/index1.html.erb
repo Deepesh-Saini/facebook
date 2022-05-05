@@ -45,26 +45,20 @@
 
 
 <% else %><br><br><br><br>
-<html lang="en">
-<body> 
-    
-    <div class="h1">
-    <h1 class="h"><strong>facebook</strong></h1>
-    <p class="pr">Facebook helps you connect and share with the people in your life.</p>
-    </div>  
-            <form action="/sessions" method="post" class="main">
-            <input type="text" id="email" name="email" placeholder="Email address or phone number" class="txt"><br>
-            <input type="password" id="password" name="password" placeholder="Password" class="txt"><br>
-            <input type="submit" value="Log In" class="login-btn"><br>
-            <div class="a-link">
-            <a href="" class="link"></a>
-            </div>
-            <div class="ca">
-                <a href="/registrations/new" class="pca">Create New Account</a>
-            </div>
-            </form>
-</body>
-</html>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="position-relative m-4">
+    <h1><strong>Facebook</strong></h1>
+    <center>
+      <%= form_with url: sessions_path do |f| %>
+      <%= f.text_field :email, id: 'email', placeholder: "Enter your e-mail" %><br><br>
+      <%= f.password_field :password, id: 'password', placeholder: "Enter your password" %><br><br>
+      <%= f.submit 'Log In', class: 'btn btn-primary' %><br><br>
+      <% end %>
+      <%= button_to 'Create New Account?', new_registration_path, method: :get, class: 'btn btn-secondary' %>
+      <br>
+    </center>
+  </div>
+</div>
 <% end %>      
 
 
