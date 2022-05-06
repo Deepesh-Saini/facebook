@@ -1,6 +1,6 @@
 <% if @current_user %>
 <%= render partial: "shared/navbar"%>
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <% @post.each do |post| %>
 <% unless post.private? %>
@@ -19,26 +19,16 @@
   <% end %>
 
   <% pre_like = post.likes.find_by(user_id: @current_user.id) %>
+  <div id="outer">
   <% if pre_like %>
-  <%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
+  <div class="inner"><%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %></div>
   <% else %>
-  <%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %>
+  <div class="inner"><%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <% end %>
-  <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
-  <div class="form-group">
-    <%= form_with model: @comment, url: post_comments_path(post.id) do |f| %>
-    <%= f.text_field :body, class: 'form-control', placeholder: "Write a Comment" %>
-    <%= f.hidden_field :user_id , value: @current_user.id %>
-    <%= f.submit 'Submit', class: 'btn btn-primary', :style => "display: none;" %>
-    <% end %>
+  <div class="inner"><%= link_to "Comment", new_post_comment_path(post.id), class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%></div>
   </div>
-
-  <div class="shadow-lg p-3 mb-5 bg-body rounded">
-    <div class="ScrollStyle">
-      <%= render "comments/comment", post: post %>
-    </div>
-  </div>  
+  <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+   
 </div>
 <% end %> 
 <% end %>
@@ -60,7 +50,7 @@
             <a href="" class="link"></a>
             </div>
             <div class="ca">
-              <%= link_to "Create New Account", new_registration_path, class: "pca", data: { turbo_frame: "remote_modal" }%>
+              <%= link_to "Create New Account", new_registration_path, class: "pca", data: { turbo_frame: "remote_modal" } %>
             </div>
             </form>
 </body>

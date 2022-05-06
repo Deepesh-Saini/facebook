@@ -122,14 +122,24 @@
 
 
 .navbar-nav a{
-    padding:  17px;
+    padding:  16px;
     font-family: 'Questrial', sans-serif;
 }
 
 .ScrollStyle
 {
-    max-height: 210px;
+    max-height: 385px;
     overflow-y: scroll;
+}
+
+.outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
 }
 
 
