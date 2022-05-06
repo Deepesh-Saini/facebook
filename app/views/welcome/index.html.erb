@@ -5,31 +5,33 @@
 <% @post.each do |post| %>
 <% unless post.private? %>
 
-<div class="shadow-lg p-3 mb-5 bg-body rounded">
-  <% if post.user.avatar.representable? %>
-  <%= image_tag post.user.avatar, :size=> '50x40'%>
-  <% end %>
+  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <% if post.user.avatar.representable? %>
+      <%= image_tag post.user.avatar, :size=> '50x40'%>
+    <% end %>
   
-  <strong><%= post.user.first_name %>&nbsp;<%= post.user.last_name %></strong>&nbsp;&nbsp;<br>
+    <strong><%= post.user.first_name %>&nbsp;<%= post.user.last_name %></strong>&nbsp;&nbsp;<br>
   
-  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(post.body, length: 60) %></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(post.body, length: 60) %></p>
   
-  <% if post.avatar.representable? %>
-  <%= image_tag post.avatar, :size=> '200x190'%><br>
-  <% end %>
+    <% if post.avatar.representable? %>
+      <%= image_tag post.avatar, :size=> '200x190'%><br>
+    <% end %>
 
-  <% pre_like = post.likes.find_by(user_id: @current_user.id) %>
-  <div id="outer">
-  <% if pre_like %>
-  <div class="inner"><%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %></div>
-  <% else %>
-  <div class="inner"><%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <% end %>
-  <div class="inner"><%= link_to "Comment", new_post_comment_path(post.id), class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%></div>
+    <% pre_like = post.likes.find_by(user_id: @current_user.id) %>
+
+    <div id="outer">
+      <% if pre_like %>
+        <div class="inner"><%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %></div>
+      <% else %>
+        <div class="inner"><%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <% end %>
+
+      <div class="inner"><%= link_to "Comment", new_post_comment_path(post.id), class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%></div>
+    </div>
+
+    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
   </div>
-  <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-   
-</div>
 <% end %> 
 <% end %>
 

@@ -1,0 +1,24 @@
+
+  <div class="ScrollStyle">
+    <% post.comments.each do |comment| %>
+      <% if comment.id.present? %>
+        <% if comment.user.avatar.representable? %>
+        <%= image_tag comment.user.avatar, :size=> '50x40'%>
+        <% end %> 
+    
+        <strong><%= comment.user.first_name %>&nbsp;<%= comment.user.last_name %></strong><br>
+    
+        <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.body %>
+
+          <div class="form-group">
+            <%= form_with model: @comment, url: comment_replies_path(comment.id) do |f| %>
+            <%= f.text_field :body, class: 'form-control', placeholder: "Write a Reply" %>
+            <%= f.hidden_field :user_id , value: @current_user.id %>
+            <%= f.submit 'Reply', class: 'btn btn-primary', :style => "display: none;" %>
+            <% end %><br>
+          </div>
+
+          <%= render "comment", post: comment %>
+      <% end %>
+    <% end %>
+  </div>

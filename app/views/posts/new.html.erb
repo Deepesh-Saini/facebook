@@ -1,34 +1,5 @@
-<%= render partial: "shared/navbar"%>
-<div class="card my-5">
-  <div class="card-body">
-    <center>
-      <%= form_with model: @post, url: posts_path do |f|%>
-      <% if @post.errors.any? %>
-      <div id="error_explanation">
-        <h4 class="text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h4>
-        <ul class="list-group">
-          <% @post.errors.full_messages.each do |message| %>
-          <li class="list-group-item list-group-item-danger"><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
+<%= render "remote_modal", title: "Create an account" do %>
 
-      <div class="form-group">
-        <%= f.text_area :body, size: "41x5", placeholder: 'Write Post', class: 'form-control'%>
-      </div><br>
+  <%= render "form", post: @post %>
 
-      <div class="form-group">
-        <%= f.file_field :avatar, accept: 'avatar/png, avatar/gif, avatar/jpg, avatar/jpeg', class: 'form-control' %>
-      </div><br>
-
-      <div class="form-group">
-        <%= f.label :Status %>
-        <%= f.select :status, ['Public', 'Private'], selected: 'public', class: 'form-control' %>
-      </div><br>
-
-      <%= f.submit 'Upload Post', class: 'btn btn-primary' %>
-      <% end %>
-    </center>
-  </div>
-</div>
+<% end %>

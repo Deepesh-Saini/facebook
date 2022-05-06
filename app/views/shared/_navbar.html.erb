@@ -7,10 +7,11 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_key">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <strong style="margin: 0 30px;"><%= link_to 'Home', root_path %>
-          <%= link_to 'Create a Post', new_post_path %>
+        <strong style="margin: 0 30px;">
+          <%= link_to 'Home', root_path %>
           <%= link_to 'Profile', welcome_path(@current_user.id) %>
-          <%= link_to 'Change Password', edit_password_path(@current_user) %></strong>
+          <%= link_to 'Create a Post', new_post_path, data: { turbo_frame: "remote_modal" } %>
+          </strong>
           <%= button_to 'Logout', session_path(@current_user), method: :delete, class: 'btn btn-primary' %>
       </ul>
     </div>
