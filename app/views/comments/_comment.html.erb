@@ -4,6 +4,13 @@
 <% end %> 
 <strong><%= @user.find(comment.user_id).first_name %>&nbsp;<%= @user.find(comment.user_id).last_name %></strong><br>
 <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.body %>
-  <%= link_to 'Reply', new_comment_reply_path(comment_id: comment.id), remote: true, class: 'd-block' %></p>
+  <%#= link_to 'Reply', new_comment_reply_path(comment_id: comment.id), remote: true, class: 'd-block' %></p>
+  <%= form_with model: @comment, url: comment_replies_path(comment.id) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :body, class: 'form-control', placeholder: "Write a Reply" %>
+    <%= f.hidden_field :user_id , value: @current_user.id %>
+  </div>
+  <%= f.submit 'Reply', class: 'btn btn-primary', :style => "display: none;" %>
+  <% end %><br>
   <%= render "comments/comment", post: comment %>
 <% end %>

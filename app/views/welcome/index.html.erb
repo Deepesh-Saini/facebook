@@ -24,20 +24,21 @@
   <% else %>
   <%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
-  <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
+  <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
-  <%= form_with model: @comment, url: post_comments_path(post.id) do |f| %>
-  <div class="form-group">  
+  <div class="form-group">
+    <%= form_with model: @comment, url: post_comments_path(post.id) do |f| %>
     <%= f.text_field :body, class: 'form-control', placeholder: "Write a Comment" %>
     <%= f.hidden_field :user_id , value: @current_user.id %>
-  </div>
     <%= f.submit 'Submit', class: 'btn btn-primary', :style => "display: none;" %>
-  <% end %><br>
-
-  <div class="ScrollStyle">
-    <%= render "comments/comment", post: post %>
+    <% end %>
   </div>
-  
+
+  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="ScrollStyle">
+      <%= render "comments/comment", post: post %>
+    </div>
+  </div>  
 </div>
 <% end %> 
 <% end %>

@@ -1,11 +1,5 @@
 class RepliesController < ApplicationController
   
-  def new
-    @comments = Comment.find(params[:comment_id])
-    @comment = @comments.comments.new
-  end
-
-
   def create
     @comments = Comment.find(params[:comment_id])
     @comment = @comments.comments.new(comment_params)
