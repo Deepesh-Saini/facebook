@@ -52,6 +52,9 @@ gem 'scrollbar-rails'
 
 gem 'popper_js'
 
+gem 'dotenv-rails'
+
+gem 'sendgrid-actionmailer'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

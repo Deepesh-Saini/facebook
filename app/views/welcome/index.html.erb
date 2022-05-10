@@ -1,6 +1,6 @@
 <% if @current_user %>
 <%= render partial: "shared/navbar"%>
-<p id="notice"><%#= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <% @post.each do |post| %>
 <% unless post.private? %>
@@ -36,7 +36,8 @@
 <% end %>
 
 
-<% else %><br><br><br><br>
+<% else %>
+<p id="notice"><%= notice %></p>
 <html lang="en">
 <body> 
     

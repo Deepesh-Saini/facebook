@@ -8,7 +8,8 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, notice: 'Successfully created account'
+      SignupMailer.with(user: @user).signup_email.deliver_later
+      redirect_to root_path, notice: 'Successfully created account. Please confirm your email address to continue'
     else
       render :new
     end
