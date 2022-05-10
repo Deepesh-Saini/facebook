@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :registrations, only: [:new, :create] do
+  resources :registrations, only: [:new, :create, :edit, :update] do
     member do
       get :confirm_email
     end

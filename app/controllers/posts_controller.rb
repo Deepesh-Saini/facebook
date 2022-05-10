@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
 	def update
 		@user = User.find(@current_user.id)
-		@post = @user.posts.create(body: params[:post][:body] , avatar: params[:post][:avatar], status: params[:post][:status])
+		@post = @user.posts.update(body: params[:post][:body] , avatar: params[:post][:avatar], status: params[:post][:status])
       # deliver_now is provided by ActiveJob.
       redirect_to root_path, notice: 'Successfully Updated!!'
 	end
