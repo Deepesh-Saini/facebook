@@ -1,0 +1,6 @@
+<% @friends.each do |friend| %>
+<% unless friend.friends == true %>
+<%= friend.user.first_name %>
+<%= button_to "Reject", registration_friend_path(friend.user.id, friend.id), method: :delete, class: "btn btn-primary" %>
+<% end %>
+<% end %>

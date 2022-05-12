@@ -10,8 +10,8 @@ class LikesController < ApplicationController
     else
       @post.likes.create(user_id: @current_user.id)
       redirect_to root_path
-      end
     end
+  end
 
   
   def destroy

@@ -1,0 +1,44 @@
+<%= render partial: "shared/navbar"%>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <form action= <%= registrations_path %> class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search friends" aria-label="Search" name="search_key">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+    <%= link_to 'Sent requests', sent_requests_registration_path(@current_user.id) %>
+      <%= link_to 'Received requests', receive_requests_registration_path(@current_user.id), style: "padding-left  : 200px;" %>
+      
+      <% @users.each do |user| %>
+        <% if user.id != @current_user.id %>
+          <% pre_sent = user.friends.find_by(sender_id: @current_user.id) %>
+          <% pre_sent1 = user.friends.find_by(sender_id: @current_user.id) %>
+          <%#debugger%>
+          <% if pre_sent %>
+          <% else %>
+            <p>
+              <div id="outer">
+                <% if user.avatar.representable? %>
+                  <%= image_tag user.avatar, :size=> '45x45', style: "border-radius: 50%;"%>
+                <% else %>
+                  <%= image_tag 'https://scontent.fbho4-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-6&_nc_sid=7206a8&_nc_ohc=qP5OfDS9FOsAX8dsLHL&_nc_ht=scontent.fbho4-1.fna&oh=00_AT8cR63aKDWfhdEJucSjqiYNa9G_QLzh7ravtrxmdNJ9DA&oe=62A2EAF8', :size=> '45x45', style: "border-radius: 50%;"%>
+                <% end %>
+
+                <strong style="padding-left: 10px;">
+                  <%= user.first_name %>
+                  <%= user.last_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </strong>
+
+                
+                <% if pre_sent %>
+                <div class="inner">
+                  <%= button_to 'Cancle request', registration_friend_path(user.id, pre_sent), method: :delete, class: 'btn btn-primary' %></div>
+                <% else %>
+                <div class="inner">
+                  <%= button_to "Add Friend", registration_friends_path(user.id), method: :post, class: "btn btn-primary" %></div>
+                <% end %>
+              </div>
+            </p>
+          <% end %>   
+        <% end %>
+      <% end %>
+</div>

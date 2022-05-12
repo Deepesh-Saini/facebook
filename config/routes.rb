@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :registrations, only: [:new, :create, :edit, :update] do
+  resources :registrations, only: [:index, :new, :create, :edit, :update] do
+    resources :friends, only: [:index, :create, :update, :destroy]
     member do
       get :confirm_email
+      get :sent_requests
+      get :receive_requests
     end
   end
   resources :passwords, only: [:edit, :update]
