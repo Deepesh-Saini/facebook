@@ -1,10 +1,11 @@
 class FriendsController < ApplicationController
-	before_action :find_user, only: [:create, :update, :destroy]
+	before_action :find_user, only: [:index, :create, :update, :destroy]
 	before_action :find_request, only: [:destroy]
   before_action :require_user_logged_in!
 
   def index
-    @friends = Friend.where(sender_id: @current_user.id)
+    @receive_friends = @user.friends.where(friends: "true" )
+    @sent_friends = Friend.where(sender_id: @user.id)
   end
 
 	def create

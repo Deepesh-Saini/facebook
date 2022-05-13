@@ -1,8 +1,9 @@
 <%#= render "remote_modal", title: "Link Expired" do %>
-<br><br><br><br><br><div class="shadow-lg p-3 mb-5 bg-body rounded">
-<center>
-  <h3><p>"Your verification link has been expired."</p></h3>
-  <h5><%= button_to "Resend Verification Link", registration_path(@user), method: :patch, style: "border: none;background: transparent;color: blue;text-decoration: underline;font-weight: 600;" %></h5>
-</center>
+<br><br><br><br><br>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <center>
+    <h3><p>"Your verification link has been expired."</p></h3>
+    <h5><%= button_to "Resend Verification Link", registration_path(@user), method: :patch, style: "border: none;background: transparent;color: blue;text-decoration: underline;font-weight: 600;" %></h5>
+  </center>
 </div>
 <%# end %>

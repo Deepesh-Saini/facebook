@@ -3,14 +3,14 @@
     <center>
       <%= form_with model: @post, url: posts_path do |f|%>
       <% if @post.errors.any? %>
-      <div id="error_explanation">
-        <h4 class="text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h4>
-        <ul class="list-group">
-          <% @post.errors.full_messages.each do |message| %>
-          <li class="list-group-item list-group-item-danger"><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+        <div id="error_explanation">
+          <h4 class="text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h4>
+          <ul class="list-group">
+            <% @post.errors.full_messages.each do |message| %>
+            <li class="list-group-item list-group-item-danger"><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
 
       <div class="form-group">

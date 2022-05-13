@@ -17,7 +17,9 @@
         <%= post.user.last_name %>
       </strong><br>
     
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(post.body, length: 60) %></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= truncate(post.body, length: 60) %>
+      </p>
     
       <% if post.avatar.representable? %>
         <%= image_tag post.avatar, :size=> '200x190'%><br>
@@ -27,39 +29,48 @@
 
       <div id="outer">
         <% if pre_like %>
-          <div class="inner"><%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %></div>
+          <div class="inner"><%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
+          </div>
         <% else %>
-          <div class="inner"><%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %></div>
+          <div class="inner"><%= button_to 'Like', post_likes_path(post.id), method: :post, class: 'btn btn-primary' %>
+          </div>
         <% end %>
-        <div class="inner"><%= link_to "Comment", new_post_comment_path(post.id), class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%></div>
+        <div class="inner"><%= link_to "Comment", new_post_comment_path(post.id), class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%>
+        </div>
       </div>
 
-      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+      <p>
+        <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%>
+      </p>
     </div>
   <% end %> 
-<% end %>
-
+  <% end %>
 
 <% else %>
   <p id="notice"><%= notice %></p>
+
   <html lang="en">
-  <body> 
-      
-      <div class="h1">
+  <body>
+
+    <div class="h1">
       <h1 class="h"><strong>facebook</strong></h1>
       <p class="pr">Facebook helps you connect and share with the people in your life.</p>
-      </div>  
-              <form action="/sessions" method="post" class="main">
-              <input type="text" id="email" name="email" placeholder="Email address or phone number" class="txt"><br>
-              <input type="password" id="password" name="password" placeholder="Password" class="txt"><br>
-              <input type="submit" value="Log In" class="login-btn"><br>
-              <div class="a-link">
-              <a href="" class="link"></a>
-              </div>
-              <div class="ca">
-                <%= link_to "Create New Account", new_registration_path, class: "pca", data: { turbo_frame: "remote_modal" } %>
-              </div>
-              </form>
+    </div>
+
+    <form action="/sessions" method="post" class="main">
+      <input type="text" id="email" name="email" placeholder="Email address or phone number" class="txt"><br>
+      <input type="password" id="password" name="password" placeholder="Password" class="txt"><br>
+      <input type="submit" value="Log In" class="login-btn"><br>
+      
+      <div class="a-link">
+        <a href="" class="link"></a>
+      </div>
+      
+      <div class="ca">
+        <%= link_to "Create New Account", new_registration_path, class: "pca", data: { turbo_frame: "remote_modal" } %>
+      </div>
+    </form>
+  
   </body>
   </html>
 <% end %>

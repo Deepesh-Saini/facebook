@@ -11,9 +11,8 @@
       <% @users.each do |user| %>
         <% if user.id != @current_user.id %>
           <% pre_sent = user.friends.find_by(sender_id: @current_user.id) %>
-          <% pre_sent1 = user.friends.find_by(sender_id: @current_user.id) %>
-          <%#debugger%>
-          <% if pre_sent %>
+          <% pre_friend = @current_user.friends.find_by(sender_id: user.id) %>
+          <% if pre_sent || pre_friend %>
           <% else %>
             <p>
               <div id="outer">
