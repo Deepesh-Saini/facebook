@@ -1,19 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFDD0;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #4267B2;">
   <div class="container-fluid">
-    <a class="navbar-brand"><h3 style="display: flex;justify-content: center;align-items: center;"><%= @current_user.first_name.capitalize %>&nbsp;&nbsp;<span><% if @current_user.avatar.representable? %><%= image_tag @current_user.avatar, :size=> '50x40'%><% end %></span></h3></a>    
+    <a class="navbar-brand">
+      <h3 style="display: flex;justify-content: center;align-items: center; color: white;">
+        <%= @current_user.first_name.capitalize %>&nbsp;&nbsp;
+        <span>
+          <% if @current_user.avatar.representable? %>
+            <%= image_tag @current_user.avatar, :size=> '40x40'%>
+          <% else %>
+            <%= image_tag 'https://scontent.fbho4-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-6&_nc_sid=7206a8&_nc_ohc=qP5OfDS9FOsAX8dsLHL&_nc_ht=scontent.fbho4-1.fna&oh=00_AT8cR63aKDWfhdEJucSjqiYNa9G_QLzh7ravtrxmdNJ9DA&oe=62A2EAF8', :size=> '40x40', style: "border-radius: 50%;"%>
+          <% end %>
+        </span>
+      </h3>
+    </a>    
+    
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <form action= <%= welcome_index_path %> class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search" name="search_key">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
         </form>
         <strong style="margin: 0 30px;">
-          <%= link_to 'Home', root_path %>
-          <%= link_to 'Profile', welcome_path(@current_user.id) %>
-          <%= link_to 'Find Friends', registrations_path(@current_user.id) %>
-          <%= link_to 'Create a Post', new_post_path, data: { turbo_frame: "remote_modal" } %>
+          <%= link_to 'Home', root_path, style: "color: white;" %>
+          <%= link_to 'Profile', welcome_path(@current_user.id), style: "color: white;" %>
+          <%= link_to 'Find Friends', registrations_path(@current_user.id), style: "color: white;" %>
+          <%= link_to 'Room', rooms_path, style: "color: white;" %>
+          <%= link_to 'Create a Post', new_post_path, data: { turbo_frame: "remote_modal" }, style: "color: white;" %>
+        
+          <%= link_to 'Logout', session_path(@current_user), data: { "turbo-method": :delete }, style: "background: transparent;color: white;;border: none;text-decoration: underline; font-family: 'Questrial', sans-serif;font-weight: 600;" %>
+          <%#= button_to 'Logout', session_path(@current_user), method: :delete, class: 'btn btn-primary', style: "background: transparent;color: #0d6efd;border: none;text-decoration: underline; font-family: 'Questrial', sans-serif;font-weight: 600;" %>
         </strong>
-          <%= button_to 'Logout', session_path(@current_user), method: :delete, class: 'btn btn-primary', style: "background: transparent;color: #0d6efd;border: none;text-decoration: underline; font-family: 'Questrial', sans-serif;font-weight: 600;" %>
       </ul>
     </div>
   </div>

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
   root 'welcome#index'
+  resources :rooms do
+  resources :messages
+  end
+  resources :users
 
-  resources :registrations, only: [:index, :new, :create, :edit, :update] do
+  resources :registrations, except: [:destroy] do
     resources :friends, only: [:index, :create, :update, :destroy]
     member do
       get :confirm_email

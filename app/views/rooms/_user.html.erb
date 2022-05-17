@@ -1,0 +1,7 @@
+<div> 
+	<% @users.each do|user|%>
+    <p>
+  <%= link_to user.first_name, registration_path(user.id) %>
+  </p>
+  <%end%>
+   </div>
