@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   resources :users
 
-  resources :registrations, except: [:destroy] do
+  resources :registrations, except: [:destroy, :show] do
     resources :friends, only: [:index, :create, :update, :destroy]
     member do
       get :confirm_email

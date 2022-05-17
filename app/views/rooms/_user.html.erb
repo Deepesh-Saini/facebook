@@ -1,7 +1,5 @@
-<div> 
-	<% @users.each do|user|%>
-    <p>
-  <%= link_to user.first_name, registration_path(user.id) %>
-  </p>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <% @users.each do|user|%>
+    <strong><%= link_to user.first_name.capitalize, room_path(user.id) %></strong><br>
   <%end%>
-   </div>
+</div>

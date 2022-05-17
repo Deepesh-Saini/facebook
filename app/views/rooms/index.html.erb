@@ -1,26 +1,24 @@
-<div class="row">
-  <div class="col-md-2">
-    <h5> Hi <%= @current_user.first_name %> </h5>
-    <h4> Users </h4>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="row">
+    <div class="col-md-2">
       <div>
         <%= turbo_stream_from "users" %>
-          <div id="users">
-            <%= render "rooms/user" %>
-          </div>
-      </div>
-
-  </div>
-  <div class="col-md-10 bg-dark text-light">
-    <% if @single_room %>
-      <h4 class="text-center"> <%= @user.first_name || @single_room.name %> </h4>
-      <div>
-        <%= turbo_stream_from @single_room %>
-        <div id="messages">
-          <%= render @messages %>
+        <div id="users">
+          <%= render "rooms/user" %>
         </div>
-        <%= render partial: 'layouts/new_message_form' %>
       </div>
-    <% end %>
+    </div>
+    <div class="col-md-10 bg-dark text-light">
+      <% if @single_room %>
+        <h4 class="text-center"> <%= @user.first_name.capitalize %> </h4>
+        <div>
+          <%= turbo_stream_from @single_room %>
+          <div id="messages">
+            <%= render @messages %>
+          </div>
+          <%= render partial: 'layouts/new_message_form' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
