@@ -1,6 +1,6 @@
 class FindfriendsController < ApplicationController
 
-	def index
+  def index
     if params[:search_key]
       @users = User.where("first_name LIKE ?", "%#{params[:search_key]}%")
     else

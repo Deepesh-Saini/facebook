@@ -7,7 +7,7 @@ class RepliesController < ApplicationController
     if @comment.save
       redirect_to root_path, notice: "Comment was successfully created."
     else
-      redirect_to root_path, notice: "Something went wrong."
+      redirect_to root_path, notice: 'Something went wrong. Please try again!'
     end
   end
 
@@ -16,5 +16,4 @@ class RepliesController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body, :user_id)
   end
-
 end

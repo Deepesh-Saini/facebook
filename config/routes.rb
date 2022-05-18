@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get 'rooms/index'
   root 'welcome#index'
 
-  resources :registrations, except: [:destroy, :show] do
+  resources :registrations, except: [:destroy, :show, :index] do
     member do
       get :confirm_email
     end
@@ -24,17 +23,17 @@ Rails.application.routes.draw do
 
   resources :passwords, only: [:edit, :update]
   resources :sessions, only: [:create, :destroy]
-  resources :posts, except: [:index] do
+  resources :posts, except: [:index, :show] do
     resources :likes, only: [:create, :destroy]
-    resources :comments do
+    resources :comments, only: [:new, :create] do
       resources :replies, only: [:create]
     end
   end
 
   resources :welcome, only: [:index, :show]
 
-  resources :rooms do
-    resources :messages
+  resources :rooms, only: [:index, :show] do
+    resources :messages, only: [:create]
   end
 
 end

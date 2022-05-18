@@ -17,5 +17,4 @@ class WelcomeController < ApplicationController
       redirect_to root_path, notice: "Please Login first."
     end
   end
-
 end

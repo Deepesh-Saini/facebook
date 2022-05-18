@@ -9,19 +9,19 @@
 
       <strong><%= comment.user.first_name.capitalize %>&nbsp;<%= comment.user.last_name.capitalize %></strong><br>
 
-      <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.body %>
+      <p style="margin-left: 44px;"><%= comment.body %></p>
 
-        <div class="form-group">
-          <%= form_with model: @comment, url: post_comment_replies_path(post.id,comment.id) do |f| %>
+      <div class="form-group">
+        <%= form_with model: @comment, url: post_comment_replies_path(post.id,comment.id) do |f| %>
           <%= f.text_field :body, class: 'form-control', placeholder: "Write a Reply" %>
           <%= f.hidden_field :user_id , value: @current_user.id %>
           <%= f.submit 'Reply', class: 'btn btn-primary', :style => "display: none;" %>
-          <% end %><br>
-        </div>
+        <% end %><br>
+      </div>
 
-        <div class="ms-5">
-          <%= render "comment", post: comment %>
-        </div>
+      <div class="ms-5">
+        <%= render "comment", post: comment %>
+      </div>
     <% end %>
   <% end %>
 </div>

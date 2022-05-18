@@ -3,8 +3,8 @@ class FriendsController < ApplicationController
 	before_action :find_request, only: [:destroy]
 
   def show
-    @receive_friends = @user.friends.where(friends: "true" )
-    @sent_friends = Friend.where(sender_id: @user.id)
+    @receive_requests_friends = @user.friends.where(friends: "true" )
+    @sent_requests_friends = Friend.where(sender_id: @user.id)
   end
 
 	def create
@@ -37,11 +37,10 @@ class FriendsController < ApplicationController
   end
 
   def already_requested?
-  Friend.where(sender_id: @current_user.id, user_id: params[:user_id]).exists?
+    Friend.where(sender_id: @current_user.id, user_id: params[:user_id]).exists?
   end
 
   def find_request
-   @request = Friend.find(params[:id])
+    @request = Friend.find(params[:id])
   end
-
 end

@@ -1,11 +1,10 @@
-
 <%= render partial: "shared/navbar"%>
 <div class="shadow-lg p-3 mb-5 bg-body rounded">
   <div class="row">
     <div class="col-md-1">
       <div>
-        <%= turbo_stream_from "users" %>
-        <div id="users">
+        <%= turbo_stream_from "rooms/user" %>
+        <div id="rooms/user">
           <%= render "rooms/user" %>
         </div>
       </div>

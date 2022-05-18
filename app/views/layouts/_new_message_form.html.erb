@@ -1,5 +1,4 @@
-
-  <%= form_with model: @message, url: room_messages_path(@single_room), remote: true, class: "d-flex"  do |f| %>
-    <%= f.text_field :content, id: 'chat-text', autocomplete: 'off', style: "width: 450px; margin-left: auto;" %>
-    <%= f.submit 'Send', class: "btn btn-primary" %>
-  <% end %>
+<%= form_with model: @message, url: room_messages_path(@single_room), remote: true, class: "d-flex"  do |f| %>
+<%= f.text_field :content, id: 'chat-text', autocomplete: 'off', style: "width: 450px; margin-left: auto;" %>
+<%= f.submit 'Send', class: "btn btn-primary" %>
+<% end %>

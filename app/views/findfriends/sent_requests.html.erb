@@ -1,27 +1,27 @@
 <%= render partial: "shared/navbar"%>
 <%= render "remote_modal", title: "Sent Requests" do %>
-<div class="shadow-lg p-3 mb-5 bg-body rounded">
-	<% @friends.each do |friend| %>
-	<% unless friend.friends == true %>
-		<p>
-			<div id="outer">
-				<% if friend.user.avatar.representable? %>
-					<%= image_tag friend.user.avatar, :size=> '40x40', style: "border-radius: 50%;"%>
-				<% else %>
-					<%= image_tag 'https://scontent.fbho4-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-6&_nc_sid=7206a8&_nc_ohc=qP5OfDS9FOsAX8dsLHL&_nc_ht=scontent.fbho4-1.fna&oh=00_AT8cR63aKDWfhdEJucSjqiYNa9G_QLzh7ravtrxmdNJ9DA&oe=62A2EAF8', :size=> '40x40', style: "border-radius: 50%;"%>
-				<% end %>
+	<div class="shadow-lg p-3 mb-5 bg-body rounded">
+		<% @friends.each do |friend| %>
+			<% unless friend.friends == true %>
+				<p>
+					<div id="outer">
+						<% if friend.user.avatar.representable? %>
+							<%= image_tag friend.user.avatar, :size=> '40x40', style: "border-radius: 50%;"%>
+						<% else %>
+							<%= image_tag 'https://scontent.fbho4-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-6&_nc_sid=7206a8&_nc_ohc=qP5OfDS9FOsAX8dsLHL&_nc_ht=scontent.fbho4-1.fna&oh=00_AT8cR63aKDWfhdEJucSjqiYNa9G_QLzh7ravtrxmdNJ9DA&oe=62A2EAF8', :size=> '40x40', style: "border-radius: 50%;"%>
+						<% end %>
 
-				<strong style="padding-left: 10px;">
-					<%= friend.user.first_name %>
-					<%= friend.user.last_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</strong>
+						<strong style="padding-left: 10px;">
+							<%= friend.user.first_name %>
+							<%= friend.user.last_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</strong>
 
-				<div class="inner">
-					<%= button_to 'Cancle request', friend_path(friend.id), method: :delete, class: 'btn btn-primary' %>
-				</div>
-			</div>
-		</p>
-	<% end %>
-	<% end %>
-</div>
+						<div class="inner">
+							<%= button_to 'Cancle request', friend_path(friend.id), method: :delete, class: 'btn btn-primary' %>
+						</div>
+					</div>
+				</p>
+			<% end %>
+		<% end %>
+	</div>
 <% end %>

@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to root_path, notice: 'Successfully Logged In'
       else
-        redirect_to root_path, notice: 'Please activate your account by following the 
-        instructions in the account confirmation email you received to proceed'
+        redirect_to root_path, notice: 'Please activate your account by following the instructions in the account confirmation email you received to proceed'
       end
     else
       redirect_to root_path, notice: 'Invalid email or password'

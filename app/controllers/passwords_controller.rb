@@ -8,10 +8,8 @@ class PasswordsController < ApplicationController
     end
   end
 
-    
   private
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
-
 end

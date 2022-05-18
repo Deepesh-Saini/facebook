@@ -1,5 +1,4 @@
 class RegistrationsController < ApplicationController
-
   before_action :require_user_logged_in!, only: [:edit, :update]
 
   def new
@@ -12,7 +11,7 @@ class RegistrationsController < ApplicationController
       SignupMailer.with(user: @user).signup_email.deliver_later
       redirect_to root_path, notice: 'Successfully created account. Please confirm your email address within 5 minutes to continue.'
     else
-      render :new
+      redirect_to root_path, notice: 'Something went wrong. Please try again!'
     end
   end
 
@@ -26,7 +25,7 @@ class RegistrationsController < ApplicationController
       SignupMailer.with(user: @user).signup_email.deliver_later
       redirect_to root_path, notice: 'Verification link has been sent successfully.'
     else
-      render :new
+      redirect_to root_path, notice: 'Something went wrong. Please try again!'
     end
   end
 
@@ -48,5 +47,4 @@ class RegistrationsController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :date_of_birth, :gender, :avatar)
   end
-  
 end
