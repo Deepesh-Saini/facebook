@@ -2,7 +2,7 @@
   <%= render partial: "shared/navbar"%>
   <p id="notice"><%= notice %></p>
 
-  <% @post.each do |post| %>
+  <% @posts.each do |post| %>
   <% unless post.private? %>
 
     <div class="shadow-lg p-3 mb-5 bg-body rounded">
@@ -15,13 +15,13 @@
       <strong style="padding-left: 10px;">
         <%= post.user.first_name.capitalize %>
         <%= post.user.last_name.capitalize %>
-      </strong><br>
+      </strong>
     
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= truncate(post.body, length: 60) %>
+      <p style="padding-left: 55px;">
+        <%= post.body %>
       </p>
 
-      <p style="padding-left: 50px;">    
+      <p style="padding-left: 50px;">
         <% if post.avatar.representable? %>
           <%= image_tag post.avatar, :size=> '270x190'%>
         <% end %>
@@ -30,7 +30,7 @@
       <% pre_like = post.likes.find_by(user_id: @current_user.id) %>
 
       <p style="padding-left: 60px;">
-        <div id="outer" >
+        <div id="outer">
           <% if pre_like %>
             <div class="inner" style="padding-left: 50px;"><%= button_to 'Unlike', post_like_path(post.id, pre_like), method: :delete, class: 'btn btn-primary' %>
             </div>
@@ -43,11 +43,10 @@
         </div>
       </p>
       <p style="padding-left: 60px;">
-
         <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%>
       </p>
     </div>
-  <% end %> 
+  <% end %>
   <% end %>
 
 <% else %>

@@ -1,35 +1,42 @@
 <%= render partial: "shared/navbar"%>
-  <p id="notice"><%= notice %></p>
-    <strong class="card-title">
-      Name:- <%= @user.first_name %> <%= @user.last_name %><br>
-      Email:- <%= @user.email %><br>
-      Date of birth:- <%= @user.date_of_birth %><br>
-      Gender:- <%= @user.gender %><br>
-      <%= link_to 'Friends', registration_friends_path(@user.id), data: { turbo_frame: "remote_modal" } %>
-      <%= link_to 'Change Password', edit_password_path(@current_user) , style: "padding-left: 200px;" %><br><br>
-    </strong>
 
-<% @post.each do |post| %>
+<p id="notice"><%= notice %></p>
+
+<strong class="card-title">
+  Name:- <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %><br>
+  Email:- <%= @user.email %><br>
+  Date of birth:- <%= @user.date_of_birth %><br>
+  Gender:- <%= @user.gender %><br>
+  <%= link_to 'Friends', friend_path(@user.id), data: { turbo_frame: "remote_modal" } %>
+  <%= link_to 'Change Password', edit_password_path(@current_user) , style: "padding-left: 200px;" %><br><br>
+</strong>
+
+<% @posts.each do |post| %>
   <div class="card">
     <div class="card-body">
-      
+
       <% if @user.avatar.representable? %>
         <%= image_tag @user.avatar, :size=> '40x40', style: "border-radius: 50%;"%>
       <% else %>
         <%= image_tag 'https://scontent.fbho4-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-6&_nc_sid=7206a8&_nc_ohc=qP5OfDS9FOsAX8dsLHL&_nc_ht=scontent.fbho4-1.fna&oh=00_AT8cR63aKDWfhdEJucSjqiYNa9G_QLzh7ravtrxmdNJ9DA&oe=62A2EAF8', :size=> '40x40', style: "border-radius: 50%;"%>
       <% end %>
 
-      <strong class="card-title"><%= @user.first_name %>&nbsp;<%= @user.last_name %></strong><br>
+      <strong class="card-title" style="padding-left: 10px;"><%= @user.first_name.capitalize %>&nbsp;<%= @user.last_name.capitalize %></strong><br>
 
-      <p class="card-text"><%= truncate(post.body, length: 60) %></p>
-      <% if post.avatar.representable? %>
-        <%= image_tag post.avatar, :size=> '200x190'%><br>    
-      <% end %>
+      <p class="card-text" style="padding-left: 55px;"><%= post.body %></p>
 
-      <div id="outer">
-        <div class="inner"><%= link_to 'Edit Post', edit_post_path(post.id), class: 'card-link' %></div>
-        <div class="inner"><%= button_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-primary' %></div>
-      </div>
+      <p style="padding-left: 55px;">
+        <% if post.avatar.representable? %>
+          <%= image_tag post.avatar, :size=> '270x190'%>
+        <% end %>
+      </p>
+
+      <p style="padding-left: 60px;">
+        <div id="outer">
+          <div class="inner" style="padding-left: 50px;"><strong><%= link_to 'Edit Post', edit_post_path(post.id), class: 'card-link' %></strong></div>
+          <div class="inner" style="padding-left: 20px;"><strong><%= button_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-primary', style: "background: transparent;border: none;color: #0D6EFD;text-decoration: underline;font-size: 16px;font-weight: bold;" %></strong></div>
+        </div>
+      </p>
     </div>
   </div>
 <% end %>

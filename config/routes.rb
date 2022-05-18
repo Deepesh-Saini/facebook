@@ -1,30 +1,40 @@
 Rails.application.routes.draw do
   get 'rooms/index'
   root 'welcome#index'
-  resources :rooms do
-  resources :messages
-  end
-  resources :users
 
   resources :registrations, except: [:destroy, :show] do
-    resources :friends, only: [:index, :create, :update, :destroy]
     member do
       get :confirm_email
+    end
+  end
+
+  resources :friends, only: [:show, :update, :destroy] do
+    member do
+      post :create
+    end
+  end
+
+  resources :findfriends, only: [:index] do
+    member do
       get :sent_requests
       get :receive_requests
     end
   end
+
+
   resources :passwords, only: [:edit, :update]
   resources :sessions, only: [:create, :destroy]
   resources :posts, except: [:index] do
     resources :likes, only: [:create, :destroy]
-    resources :comments
-  end
-
-  resources :comments, only: [] do
-    resources :replies, only: [:new, :create]
+    resources :comments do
+      resources :replies, only: [:create]
+    end
   end
 
   resources :welcome, only: [:index, :show]
+
+  resources :rooms do
+    resources :messages
+  end
 
 end

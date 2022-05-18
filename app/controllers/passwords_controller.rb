@@ -1,23 +1,17 @@
 class PasswordsController < ApplicationController
 
-	before_action :require_user_logged_in!
-
-    def edit;
+  def update
+    if @current_user.update(password_params)
+      redirect_to root_path, notice: 'Password Update Successfully.'
+    else
+      redirect_to root_path, notice: 'Something went wrong.'
     end
-    
-    def update
-      # update user password
-      if @current_user.update(password_params)
-        redirect_to new_session_path, notice: 'Password Updated'
-      else
-        render :edit
-      end
-    end
+  end
 
     
-    private
-    def password_params
-      params.require(:user).permit(:password, :password_confirmation)
-    end
+  private
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 
 end

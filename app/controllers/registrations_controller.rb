@@ -1,12 +1,6 @@
 class RegistrationsController < ApplicationController
 
-  def index
-    if params[:search_key]
-      @users = User.where("first_name LIKE ?", "%#{params[:search_key]}%")
-    else
-      @users = User.all
-    end
-  end
+  before_action :require_user_logged_in!, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -49,16 +43,6 @@ class RegistrationsController < ApplicationController
       redirect_to root_url, notice: "Sorry. User does not exist"
     end
   end
-
-  def sent_requests
-    @friends = Friend.where(sender_id: @current_user.id)
-  end
-
-  def receive_requests
-    receive_requests = Friend.where(user_id: @current_user.id)
-    @friends = receive_requests.where(friends: "false")
-  end
-
 
   private
   def user_params

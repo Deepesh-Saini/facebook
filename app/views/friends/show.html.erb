@@ -17,7 +17,7 @@
     	</strong>
 
     	<div class="inner">
-      	<%= button_to "Unfriend", registration_friend_path(@current_user.id, friend.id), method: :delete, class: "btn btn-primary" %>
+      	<%= button_to "Unfriend", friend_path(friend.id), method: :delete, class: "btn btn-primary" %>
     	</div>
     </div>
   <p>
@@ -39,7 +39,7 @@
     	</strong>
 
     	<div class="inner">
-      	<%= button_to "Unfriend", registration_friend_path(friend.user.id, friend.id), method: :delete, class: "btn btn-primary" %>
+      	<%= button_to "Unfriend", friend_path(friend.id), method: :delete, class: "btn btn-primary" %>
     	</div>
     </div>
 	</p>

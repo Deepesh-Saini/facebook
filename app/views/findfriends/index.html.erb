@@ -5,8 +5,8 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 
-    <%= link_to 'Sent requests', sent_requests_registration_path(@current_user.id), data: { turbo_frame: "remote_modal" } %>
-      <%= link_to 'Received requests', receive_requests_registration_path(@current_user.id), data: { turbo_frame: "remote_modal" } , style: "padding-left  : 200px;" %>
+    <%= link_to 'Sent requests', sent_requests_findfriend_path(@current_user.id), data: { turbo_frame: "remote_modal" } %>
+      <%= link_to 'Received requests', receive_requests_findfriend_path(@current_user.id), data: { turbo_frame: "remote_modal" } , style: "padding-left  : 200px;" %>
       
       <% @users.each do |user| %>
         <% if user.id != @current_user.id %>
@@ -30,10 +30,10 @@
                 
                 <% if pre_sent %>
                 <div class="inner">
-                  <%= button_to 'Cancle request', registration_friend_path(user.id, pre_sent), method: :delete, class: 'btn btn-primary' %></div>
+                  <%= button_to 'Cancle request', friend_path(user.id, pre_sent), method: :delete, class: 'btn btn-primary' %></div>
                 <% else %>
                 <div class="inner">
-                  <%= button_to "Add Friend", registration_friends_path(user.id), method: :post, class: "btn btn-primary" %></div>
+                  <%= button_to "Add Friend", friend_path(user.id), method: :post, class: "btn btn-primary" %></div>
                 <% end %>
               </div>
             </p>

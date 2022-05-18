@@ -2,14 +2,16 @@ class User < ApplicationRecord
   before_create :confirmation_token
   has_secure_password
   has_one_attached :avatar
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :friends
+
   validates :email, presence: true, uniqueness: true, format: { with: Devise.email_regexp, message: 'Invalid email' }
-  scope :all_except, ->(user) { where.not(id: user) }
-  after_create_commit { broadcast_append_to "users" }
+
+  scope :all_except, -> (user) { where.not(id: user) }
+
   def email_activate
     self.email_confirmed = true
     self.confirm_token = nil

@@ -17,7 +17,7 @@
 				</strong>
 
 				<div class="inner">
-					<%= button_to 'Cancle request', registration_friend_path(friend.user.id, friend.id), method: :delete, class: 'btn btn-primary' %>
+					<%= button_to 'Cancle request', friend_path(friend.id), method: :delete, class: 'btn btn-primary' %>
 				</div>
 			</div>
 		</p>

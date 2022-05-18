@@ -16,11 +16,11 @@
       </strong>
 
       <div class="inner">
-        <%= button_to 'Accept', registration_friend_path(@current_user.id, friend.id), method: :patch, class: 'btn btn-primary' %>
+        <%= button_to 'Accept', friend_path(friend.id), method: :patch, class: 'btn btn-primary' %>
       </div>
       
       <div class="inner">
-        <%= button_to "Reject", registration_friend_path(@current_user.id, friend.id), method: :delete, class: "btn btn-primary" %>
+        <%= button_to "Reject", friend_path(friend.id), method: :delete, class: "btn btn-primary" %>
       </div>
     </div>
   <p>

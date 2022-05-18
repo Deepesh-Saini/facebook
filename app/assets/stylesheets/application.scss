@@ -125,7 +125,7 @@
 
 
 .navbar-nav a{
-    padding:  15px;
+    padding:  10px;
     font-family: 'Questrial', sans-serif;
 }
 
@@ -268,16 +268,8 @@ form .signup-link{
     text-align: center;
 }
 
-
-
-.msg-form {
-    position: fixed;
-    bottom: 0;
-    width: 90%
-  }
-
-  .col-md-10 {
-    height: 100vh;
+  .col-md-11 {
+    height: 68vh;
     overflow: scroll;
   }
 

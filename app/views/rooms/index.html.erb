@@ -1,6 +1,8 @@
+
+<%= render partial: "shared/navbar"%>
 <div class="shadow-lg p-3 mb-5 bg-body rounded">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
       <div>
         <%= turbo_stream_from "users" %>
         <div id="users">
@@ -8,17 +10,23 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10 bg-dark text-light">
-      <% if @single_room %>
-        <h4 class="text-center"> <%= @user.first_name.capitalize %> </h4>
+
+    <% if @single_room %>
+      <div class="col-md-11 bg-dark text-light">
+        <h4 class="text-center">
+          <%= @user.first_name.capitalize %>
+        </h4>
+
         <div>
           <%= turbo_stream_from @single_room %>
           <div id="messages">
             <%= render @messages %>
           </div>
-          <%= render partial: 'layouts/new_message_form' %>
         </div>
-      <% end %>
-    </div>
+      </div>
+
+      <%= render "layouts/new_message_form" %>
+        
+    <% end %>
   </div>
 </div>

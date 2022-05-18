@@ -1,15 +1,15 @@
 <%= render "remote_modal", title: "Comments" do %>
 
 <p>
-<div class="form-group">
-  <%= form_with model: @comment, url: post_comments_path(@post) do |f| %>
-  <%= f.text_field :body, class: 'form-control', placeholder: "Write a Comment" %>
-  <%= f.hidden_field :user_id , value: @current_user.id %>
-  <%= f.submit 'Submit', class: 'btn btn-primary', :style => "display: none;" %>
-  <% end %>
-</div>
+  <div class="form-group">
+    <%= form_with model: @comment, url: post_comments_path(@post) do |f| %>
+    <%= f.text_field :body, class: 'form-control', placeholder: "Write a Comment" %>
+    <%= f.hidden_field :user_id , value: @current_user.id %>
+    <%= f.submit 'Submit', class: 'btn btn-primary', :style => "display: none;" %>
+    <% end %>
+  </div>
 </p>
 
-  <%= render "comment", users: @users, post: @post %>
+<%= render "comment", users: @users, post: @post %>
 
 <% end %>
