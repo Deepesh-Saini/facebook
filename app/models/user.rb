@@ -18,7 +18,6 @@ class User < ApplicationRecord
   scope :all_except, -> (user) { where.not(id: user) }
 
   def self.from_omniauth(auth)
-    debugger
     user = User.find_by(email: auth.info.email)
     if user
       user.provider = auth.provider
