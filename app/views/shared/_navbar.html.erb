@@ -5,8 +5,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
 
-        <form action= <%= welcome_index_path %> class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search" name="search_key" style="margin-left: 25px;width: 590px;">
+        <form action= <%= posts_path %> class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search" name="q" style="margin-left: 25px;width: 590px;">
           <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
         </form>
         
@@ -18,7 +18,7 @@
               <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBhvFKR4DhrLlZJDu7Q4rE7RKCYEOmYAwZg&usqp=CAU', :size=> '35x35', style: "border-radius: 50%;"%>
             <% end %>
 
-            <%= link_to welcome_path(@current_user.id), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => "Profile" do %>
+            <%= link_to welcome_path(@current_user.id), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => @current_user.first_name.capitalize do %>
               <% if @current_user.avatar.representable? %>
                 <%= image_tag @current_user.avatar, :size=> '35x35'%>
               <% else %>
@@ -27,7 +27,7 @@
             <% end %>
           
             <%#= link_to 'Find Friends', registrations_path(@current_user.id), style: "color: white;" %>
-            <%= link_to findfriends_path, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => "Find Friends" do %>
+            <%= link_to find_friends_path, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => "Find Friends" do %>
               <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThijoj1WbdkEAtWU2JKGCBb2GipU0D94Cf1A&usqp=CAU', :size=> '35x35', style: "border-radius: 50%;"%>          
             <% end %>
             

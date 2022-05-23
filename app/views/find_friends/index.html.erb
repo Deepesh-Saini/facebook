@@ -5,8 +5,8 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 
-  <%= link_to 'Sent requests', sent_requests_findfriend_path(@current_user.id), data: { turbo_frame: "remote_modal" } %>
-  <%= link_to 'Received requests', receive_requests_findfriend_path(@current_user.id), data: { turbo_frame: "remote_modal" } , style: "padding-left  : 200px;" %>
+  <%= link_to 'Sent requests', sent_requests_find_friend_path(@current_user.id), data: { turbo_frame: "remote_modal" } %>
+  <%= link_to 'Received requests', receive_requests_find_friend_path(@current_user.id), data: { turbo_frame: "remote_modal" } , style: "padding-left  : 200px;" %>
 
   <% @users.each do |user| %>
     <% if user.id != @current_user.id %>

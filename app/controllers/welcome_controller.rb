@@ -2,11 +2,12 @@ class WelcomeController < ApplicationController
   skip_before_action :require_user_logged_in!
 
   def index
-    if params[:search_key]
-      @posts = Post.where("body LIKE ?", "%#{params[:search_key]}%")
-    else
+    #Query = params[:q].presence || “*”
+      #@posts = Post.search(
+        #query,
+          #page: params[:page}, per_page: 25
+        #)
       @posts = Post.order(created_at: :desc)
-    end
   end
 
   def show

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :registrations, except: [:destroy, :show, :index] do
     member do
@@ -7,13 +8,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :friends, only: [:show, :update, :destroy] do
+  resources :friends, only: [:index, :update, :destroy] do
     member do
       post :create
     end
   end
 
-  resources :findfriends, only: [:index] do
+  resources :find_friends, only: [:index] do
     member do
       get :sent_requests
       get :receive_requests
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :passwords, only: [:edit, :update]
   resources :sessions, only: [:create, :destroy]
-  resources :posts, except: [:index, :show] do
+  resources :posts, except: [:show] do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:new, :create] do
       resources :replies, only: [:create]

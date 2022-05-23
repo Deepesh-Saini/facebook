@@ -1,17 +1,17 @@
 class FriendsController < ApplicationController
-	before_action :find_user, except: [:destroy]
+	before_action :find_receiver, only: [:create]
 	before_action :find_request, only: [:destroy]
 
-  def show
-    @receive_requests_friends = @user.friends.where(friends: "true" )
-    @sent_requests_friends = Friend.where(sender_id: @user.id)
+  def index
+    @receive_requests_friends = @current_user.friends.where(friends: "true")
+    @sent_requests_friends = Friend.where(sender_id: @current_user.id).where(friends: "true")
   end
 
 	def create
 		if already_requested?
       flash[:notice] = "Request already sent."
     else	
-      @friend = @user.friends.create(sender_id: @current_user.id)
+      @friend = @receiver_user.friends.create(sender_id: @current_user.id)
       redirect_to registrations_path
     end
   end
@@ -32,8 +32,8 @@ class FriendsController < ApplicationController
   end
 
   private
-  def find_user
-    @user = User.find_by_id(params[:id])
+  def find_receiver
+    @receiver_user = User.find_by_id(params[:id])
   end
 
   def already_requested?

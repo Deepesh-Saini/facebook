@@ -7,7 +7,7 @@
   Email:- <%= @user.email %><br>
   Date of birth:- <%= @user.date_of_birth %><br>
   Gender:- <%= @user.gender %><br>
-  <%= link_to 'Friends', friend_path(@user.id), data: { turbo_frame: "remote_modal" } %>
+  <%= link_to 'Friends', friends_path, data: { turbo_frame: "remote_modal" } %>
   <%= link_to 'Change Password', edit_password_path(@current_user) , style: "padding-left: 200px;" %><br><br>
 </strong>
 

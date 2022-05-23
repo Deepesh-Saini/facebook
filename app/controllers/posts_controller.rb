@@ -1,4 +1,11 @@
 class PostsController < ApplicationController
+	
+	def index
+		query=params[:q].presence
+		@posts=Post.search(query)
+		#params[:search_key]
+    	#@posts = Post.where("body LIKE ?", "%#{params[:search_key]}%")
+	end
 
 	def new
 		@post = Post.new

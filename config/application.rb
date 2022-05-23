@@ -10,6 +10,7 @@ module Login
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
 
     # Configuration for the application, engines, and railties goes here.
     #

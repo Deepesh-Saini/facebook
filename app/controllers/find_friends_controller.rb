@@ -1,4 +1,4 @@
-class FindfriendsController < ApplicationController
+class FindFriendsController < ApplicationController
 
   def index
     if params[:search_key]
@@ -9,7 +9,7 @@ class FindfriendsController < ApplicationController
   end
 
   def sent_requests
-    @friends = Friend.where(sender_id: @current_user.id)
+    @friends = Friend.where(sender_id: @current_user.id).where(friends: "false")
   end
 
   def receive_requests

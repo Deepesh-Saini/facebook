@@ -1,5 +1,4 @@
-<% if @current_user %>
-  <%= render partial: "shared/navbar"%>
+<%= render partial: "shared/navbar"%>
   <p id="notice"><%= notice %></p>
 
   <% @posts.each do |post| %>
@@ -48,33 +47,3 @@
     </div>
   <% end %>
   <% end %>
-
-<% else %>
-  <p id="notice"><%= notice %></p>
-
-  <html lang="en">
-  <body>
-
-    <div class="h1">
-      <h1 class="h"><strong>facebook</strong></h1>
-      <p class="pr">Facebook helps you connect and share with the people in your life.</p>
-    </div>
-
-    <form action="/sessions" method="post" class="main">
-      <input type="text" id="email" name="email" placeholder="Email address or phone number" class="txt"><br>
-      <input type="password" id="password" name="password" placeholder="Password" class="txt"><br>
-      <input type="submit" value="Log In" class="login-btn"><br>
-      
-      <div class="a-link">
-        <a href="" class="link"></a>
-      </div>
-      
-      <div class="ca">
-        <%= link_to "Create New Account", new_registration_path, class: "pca", data: { turbo_frame: "remote_modal" } %>
-      </div>
-      <%= link_to "Continue With Gmail", user_google_oauth2_omniauth_authorize_path, style: "font-weight: bold;text-decoration-line: none;text-shadow: 0 0 red;font-size: 20px;color: brown;margin-left: 110px;" %>
-    </form>
-
-  </body>
-  </html>
-<% end %>
