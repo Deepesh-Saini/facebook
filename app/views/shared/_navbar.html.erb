@@ -6,7 +6,7 @@
       <ul class="navbar-nav">
 
         <form action= <%= posts_path %> class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search" name="search_key" style="margin-left: 25px;width: 590px;">
+          <input class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search" name="q" style="margin-left: 25px;width: 590px;">
           <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
         </form>
         
@@ -32,9 +32,9 @@
             <% end %>
             
             <%#= link_to 'Messages', rooms_path, style: "color: white;" %>
-            <%#= link_to rooms_path, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => "Message" do %>
-              <%#= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKL9FjjI7oJBlsRih79rfhVaiSzsJRAik_IQ&usqp=CAU', :size=> '35x35', style: "border-radius: 50%;"%>
-            <% #end %>
+            <%= link_to rooms_path, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => "Message" do %>
+              <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKL9FjjI7oJBlsRih79rfhVaiSzsJRAik_IQ&usqp=CAU', :size=> '35x35', style: "border-radius: 50%;"%>
+            <% end %>
             
             <%#= link_to 'Create a Post', new_post_path, data: { turbo_frame: "remote_modal" }, style: "color: white;" %>
             <%= link_to new_post_path, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, :title => "Create Post", data: { turbo_frame: "remote_modal" } do %>

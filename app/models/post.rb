@@ -1,6 +1,12 @@
 class Post < ApplicationRecord
 
-	
+	searchkick
+
+	def search_data
+		{
+			body: body
+   		}
+ 	end
   
 	belongs_to :user
 	has_many :comments, as: :commentable, dependent: :destroy
