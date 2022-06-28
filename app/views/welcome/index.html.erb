@@ -1,5 +1,7 @@
-<%= request.location.country %>
+<%= @country %>
+<%= @city %>
 <%= request.location.city %>
+<% end %>
 <% if @current_user %>
   <%= render partial: "shared/navbar"%>
   <p id="notice"><%= notice %></p>
