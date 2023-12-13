@@ -1,0 +1,28 @@
+name: SonarCloud Scan
+
+on:
+  pull_request:
+    types:
+      - open
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 11
+
+      - name: SonarCloud Scan
+        run: |
+          ./gradlew sonarqube \
+            -Dsonar.organization=Deepesh-Saini \
+            -Dsonar.projectKey=deepesh-saini \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
