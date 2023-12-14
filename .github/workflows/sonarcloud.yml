@@ -1,4 +1,5 @@
 name: SonarCloud Scan
+run-name: SonarCloud Scan
 
 on:
   pull_request:
